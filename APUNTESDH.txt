@@ -1,0 +1,993 @@
+Clase 2
+
+---------- TERMINAL
+
+es un programa presente en todos los sistemas operativos, con él mismo se le pueden dar ordenes al sistema.
+Lista de Comandos para cmd :
+https://www.abrirllave.com/cmd/comandos.php
+
+Clase 3
+
+---------- Node Js
+
+Es un entorno de ejecucion para javascript permite ejecutar fuera del navegador
+
+---------- SISTEMA DE MODULOS
+
+Los modulos de node son bloques de codigo reutilizable.
+tipos de modulos:( ver https://www.nodejs.org/api ) 
+	-modulos nativos, vienen instalados cuando creamos un proyecto node.js
+	-modulos de terceros, podemos instalarlos usando npm
+	-modulos propios, son los creados por uno mismo
+
+1° debemos crear el app.js (o como quieran llamar) donde estará el contenido del modulo por ej
+let series = [ "friends", "mr. robot", "breaking bad" ];
+2° usamos el objeto module y su propiedad exports y le asignamos la variable a exportar
+module.exports = series;
+3° podemos importar a un nuevo archivo usando la funcion require()
+const series = require ("./app.js");
+
+Inicializar un proyecto con Node.js
+abrir consola
+npm init // establecer como entry point app.js
+nmp install // se instalan los modulos nativos, sino agregar nombre del modulo
+crear el archivo app.js
+
+Clase 4
+
+---------- VARIABLES
+
+Son espacios de memoria donde podemos almacenar distintos tipos de datos.
+
+Los tipos de Varibles son:
+var
+let //solo es accesible en el bloque de codigo donde fue creada
+const // solo accesibles en el bloque creado, no se pueden cambiar
+---------- TIPOS DE DATOS
+
+Nos permiten conocer las caracteristicas del dato.
+
+number: son numeros num=1
+
+strings: son cadenas de texto texto="esto es un string"
+
+boolean: true false dia=true
+
+Objetos: son colecciones de datos donde pueden contener varios datos, los mismos se declaran con persona= {nombre:"jose", edad:31, soltero: true}
+
+Tipos de datos especiales
+array: son colecciones de datos que se declaran con ["jose",31,true]
+
+NaN (not a number) indica que no es un numero
+let malaDivision = "30" / 2; 
+
+Null (valor nulo) lo asignamos para indicar un valor vacío 
+let temperatura = null;
+
+Undefined (valor sin definir) indica la ausencia de valor
+let saludo; //es undefined porque no le asignamos valor
+
+valorNum = Number("12") // devuelve 12
+valorEntero = parseInt(1.267) // devuelve 1
+
+---------- OPERADORES
+
+Nos permiten manipular el valor de las variales, realizar operaciones y comparar sus valores, entre ellos están
+- de Asignación asigna el valor a una variable let edad = 35
+
+- Aritmeticos permiten hacer operaciones matemáticas 
++ Suma
+- Resta 
+* Multiplicación
+/ División
+15++ Incremento
+15-- Decremento
+15 % 5 Modulo, el resto de dividir 15/5 nos da 0
+15 % 2 Modulo, el resto de dividir 15/2 nos da 1
+
+- De comparación Simple comparan dos valores y devuelven true o false
+10 == 15 // nos retorna false
+10 != 15 // nos retorna true
+
+- De comparación estricta comparan el valor y los tipos de datos tambien
+10 === "10" // nos retorna false
+10 !== 15 // nos retorna true
+
+15 > 15 // mayor que --> retorna false
+15 >= 15 // mayor o igual que --> retorna true
+10 < 15 // menor que --> retorna true
+10 <= 15 // menor o igual que --> retorna true
+
+Los operadores de comparación siempre devuelven booleans
+
+- Lógicos permiten combinar valores booleans, el resultado devuelve un booleans. Exiten tres operadores
+And && // todos los valores deben evaluar como true para que el resultado sea true
+(10<15) && (10!=20) // retorna true
+(10>15) && (10!=20) // retorna false
+
+Or || // al menos un valor debe evaluar como true para que sea true el resultado
+(10>15) || (10!=20) // retorna true
+(10>15) || (10==20) // retorna false
+
+Not ! // niega la condición, si era true devuelve false y viceversa.
+!false // retorna true
+!(20==15) // retorna true
+
+- De concatenación, sirven para unir cadenas de texto. Devuelven otra cadena de texto.
+let nombre = "jose"
+let apellido = "miranda"
+let nombreCompleto = nombre + " " + apellido // jose miranda
+
+---------- FUNCIONES
+
+let saludo = function (cantidadDeSaludos) {
+    console.log ( "hola\n".repeat(cantidadDeSaludos))
+}
+saludo(5) // retorna 5 hola con salto de linea ( \n )
+
+Es un listado de proceidimientos que se ejecutarán cuando las llamemos. pueden ser declaradas o expresadas
+
+Expresada, se carga cuando el interprete alcanza la linea de codigo donde se encuentra la funcion, se asigna como valor a una variable
+let sumar = function (num1, num2){return num1 + num2}
+console.log(sumar(1,2))
+
+Declarada, (se carga antes de que cualquier codigo sea ejecutado, recibe un nombre formal y no se asigna como valor a una variable
+function sumar (num1,num2) {return num1 + num2}
+console.log(sumar(1,2))
+
+Scope --> Existe Scope Local y Global
+
+Scope local cuando existen variables declaradas dentro de una función, la variable es inexistente fuera de la función.
+
+function hola () { 
+   let saludo = "hola que tal";
+   return saludo; }
+console.log( hola() ); // "hola que tal"
+console.log( saludo ); // Undefined	 
+
+Scope Global cuando las variables se declaran fuera de cualquier función, la mísma tiene alcance en cualquier lugar del código incluyendo funciones.
+
+let saludo = "hola que tal"
+function hola() {
+  return saludo; }
+console.log(saludo) // "hola que tal"
+
+Otro ejemplo
+let mensaje = "hola";
+function saludar () {
+  let mensaje = "chau";
+  return mensaje; }
+console.log(mensaje); //"hola" scope global
+console.log(saludar()); //"chau" scope local de la funcion
+
+---------- CONDICIONALES
+
+If (condición) {código a ejecutar} pregunta sobre una condición, si la misma se cumple ejecuta el codigo establecido.
+
+- un if no siempre necesita un else o else if 
+
+else if cuando no se cumple las condiciones del if inicial (se pueden agregar muchos)
+
+else se escribe luego de llave de cierre del ultimo if, sería lo que haremos si la condición del if no se cumple (solo puede existir uno) 
+
+
+let clima = "lluvia";
+let dia = "lunes";
+
+if (clima == "sol" && dia == "domingo"){
+  console.log ("lindo día para pasear");
+}
+else if (clima == "lluvia" && dia == "lunes"){
+  console.log ("Quedate en casa");
+}
+else{
+  console.log ("vamos a entrenar");
+}
+
+---------- ARRAY
+
+Nos permiten generar una coleccion de datos ordenados (pueden ser number, strings, objetos lit, booleans)[elemento1,elemento2,elemento...]
+
+Las posiciones dentro de un array son desde 0.
+
+Para acceder a un elemento especifico
+let unArray = ["gato","perro",true]
+unArray[1] //nos devuelve perro
+
+Para conocer la longitud del array
+let unArray = ["gato","perro",true]
+unArray.length // nos devuelve 3
+
+también se puede tener un array dentro de otro
+unArray = ["jardin","casa"]
+arrayFinal = ["cocina",unArray]
+para ingresar al array dentro del array
+console.log(ArrayFinal[1]) //devuelve ["jardin","casa"]
+para ingresar a un elemento específico de ese array
+console.log(ArrayFinal[1][0]) //devuelve "jardin"
+
+
+---------- METODOS DE ARRAYS
+
+Los arrays son un tipo especial de objetos, por lo tanto disponemos de muchos metodos utiles para trabajar con la información que contienen.
+
+Cuando una funcion pertenece a un objeto la llamamos método, en este caso son funciones que pertenecen al array.
+
+.push() agrega uno o varios elementos al final del array, recibe uno o más objetos y retorna la nueva longitud del array.
+let colores = ["rojo","verde"]
+colores.push("azul"); // lo agrega al final
+console.log(colores); // ["rojo","verde","azul"]
+colores.push("violeta")
+console.log(colores); // ["rojo","verde","azul","violeta"]
+
+.pop() elimina el ultimo elemento de un array, no recibe parametros y devuelve el elemento eliminado.
+
+let colores = ["rojo","verde","amarillo"]
+colores.pop()
+console.log(colores) // devuelve ["rojo","verde"]
+console.log(colores.pop()) //devuelve "amarillo"
+
+otra opción sería declarar
+let colores = ["rojo","verde","amarillo"]
+let ultimoColor = colores.pop()
+console.log(colores) //devuelve el resto del .pop() ["rojo","verde"]
+console.log(ultimoColor) //devuelve el ultimo elemento "amarillo"
+
+.shift elimina el primer elemento de un array, no recibe parámetros, devuelve el elemento eliminado
+
+let colores = ["rojo","verde","amarillo"]
+colores.shift()
+console.log(colores) // devuelve ["verde", "amarillo"]
+console.log(colores.shift()) //devuelve "rojo"
+
+otra opción sería declarar
+let colores = ["rojo","verde","amarillo"]
+let ultimoColor = colores.shift()
+console.log(colores) //devuelve el resto del .shift() ["verde", "amarillo"]
+console.log(ultimoColor) //devuelve el primer elemento "rojo"
+
+.unshift() agrega uno o varios elementos al principio de un array, recibe uno o más elementos como parámetros, retorna la nueva longitud del array
+let colores = ["rojo"]
+colores.unshift("verde","amarillo");
+console.log(colores) // nos devuelve ["verde","amarillo","rojo"]
+colores.unshift("blanco")
+console.log(colores) // nos devuelve ["blanco","verde","amarillo","rojo"]
+
+.join() une los elementos de un array utilizando el separador que le especifiquemos, si no lo hacemos utiliza comas. en resumen recibe un separador (string) que es opcional y nos retorna un string con todos los elementos unidos
+
+let colores = ["blanco","verde","amarillo"]
+let coloresSeparadosGuion = colores.join(" - ")
+console.log(coloresSeparadosGuion) //devuelve "blanco-verde-amarillo"
+let coloresSeparadosComa= colores.join()
+console.log(coloresSeparadosComa) //devuelve "blanco,verde,amarillo"
+let coloresSeparadosOun = colores.join(" o un ")
+console.log("Es " + coloresSeparadosOun) // devuelve "Es blanco o un verde o un amarillo"
+
+indexOf() busca en el array el elemento que recibe como parámetro, recibe un elemeneto a buscar, retorna el primer indice donde lo encontró si no lo encuentra -1
+
+let colores = [["amarillo","verde","amarillo"]
+colores.indexOf("amarillo"); //devuelve el 0 que sería la posición donde se ecuentra el primer elemento buscando del inicio al fin.
+colores.indexOf("naranja"); devuelve -1 porque no lo encontró
+
+lastIndexOf() al contrario de indexOf(), comienza buscando de atrás hacia adelante, en caso de haber encontrado dos iguales, devuelve el más cercano.
+
+let colores = ["amarillo","verde","amarillo"]
+colores.lastIndexOf("amarillo"); //devuelve el 2 que sería la posición donde encuentra buscando desde el fin al inicio .
+colores.lastIndexOf("naranja"); devuelve -1 porque no lo encontró
+
+.includes() similar a indexOf(), retorna un booleano. recibe lo que vamos a buscar, si lo encuentra da true, sino false
+
+let colores = ["amarillo","verde","amarillo"]
+console.log(colores.includes("amarillo")); //devuelve true .
+console.log(colores.includes("naranja")); //devuelve false no lo encontró
+
+let colores = ["amarillo","verde","amarillo"]
+let buscoAmarillo = colores.includes("amarillo")
+let buscoNaranja = colores.includes("naranja")
+console.log(buscoAmarillo); //devuelve true .
+console.log(buscoNaranja); //devuelve false no lo encontró
+
+
+Clase 5
+
+---------- JSON, CONDICIONALES, CICLOS 
+
+JSON (Javascript Object Notation) es un string que puede ser compartida en todos los lenguajes de programación. Se puede convertir facilmente  en un objeto literal o array.
+Existen 2 metodos 
+JSON.parse() - convierte un string JSON en objeto. 
+
+ej	le t arrayOriginal = JSON.parse(arrayJSON)
+	El string JSON vuelve a array.
+
+ej2	let ObjetoLitOriginal = JSON.parse(ObjetoLitJSON)
+	Persona vuelve a Objeto literal
+
+JSON.stringify() - convierte un objeto en string JSON.
+
+ej1 Array	let array = ["un", "array"]; 
+		let arrayJSON = JSON.stringify(array);
+		El array se convierte en un string JSON
+
+ej2 Objeto lit	let ObjetoLit = {
+			nombre : "carlos",
+			edad : 26,
+			}
+		let ObjetoLitJSON = JSON.stringify(persona)
+		El objeto se convierte en un string JSON
+
+
+---------- STRINGS 
+
+Es un objeto, los metodos que existen son:
+
+.lenght : devuelve la longitud de una cadena de texto
+let palabra = "La ola".... palabra.lenght nos retorna 6. 
+
+.indexOf() : busca un string o palabra.
+palabra.indexOf("ola") nos retorna 4
+si no existe lo que buscamos retorna -1
+
+.slice : toma una porcion de una cadena de texto, necesita dos parametros numeros, el indice de donde empezar a cortar y donde terminar.
+palabra.slice(4,6) nos retorna "ola"
+
+.trim() : elimina espacios en blanco antes y despues de la primera ocurrencia de un caracter.
+"    hola mundo".trim() nos retorna "hola mundo"
+
+.split() : convierte un string en un array. El delimitador puede ser cualquier caracter.
+"Soy del planeta".split(" "); nos retorna ["Soy","del","planeta"]
+
+.replace() : permite reemplazar una porción de texto dentro de un string
+unString.replace(loQueBuscas, suReemplazo)
+"Aguante Python".replace("Python", "Javascript") nos devuelve "Aguante Javascript"
+
+---------- OBJETOS LITERALES
+
+Es una estructura de datos que puede contener propiedades y metodos. propiedad : valor. Se inicia con una { clave : valor, clave2 : valor2,}
+
+Dot notation : sirve para acceder a una propiedad de un objeto literal. ej
+let miPais = { nombre : "Argentina", poblacion : 11000}
+console.log(miPais.nombre) nos retorna "Argentina"
+
+Metodos : son funciones que se asignan como valor a una clave y que buscan hacer algo más alla de tener un simple dato.
+
+let miPais = {	nombre : "Argentina",
+		poblacion : 11000
+		decirNacionalidad : function(){
+			return "Yo naci en this.nombre";
+			}
+		};
+console.log(miPais.decirNacionalidad()) nos muestra "Yo nací en Argentina"
+
+//con this.nombre llamamos al valor de la clave. (su valor)
+//decir miPais.nombre es igual a this.nombre
+
+constructor de objetos: es un molde para crear objetos
+function MiPais(nombre,poblacion) {
+	this.nombre = nombre;
+	this.poblacion = poblacion;
+	}
+
+instanciar let otroPais = new MiPais("Peru",22000); 
+console.log(otroPais) nos devuelve MiPais { nombre: "Peru", Poblacion: 22000 }
+
+otro ej let tercerPais = new MiPais ("Venezuela", 3000);
+console.log(tercerPais) nos devuelve MiPais { nombre: "venezuela", Poblacion : 3000 }
+
+---------- ARROW FUNCTIONS
+
+Es una funcion más sintetizada y compacta. 
+Se usa implementando operador flecha => //no hace falta llamar a function.
+
+	let laMitad = numero => numero / 2;
+	console.log(laMitad(8));
+
+	let dividir = (numero1, numero2) => numero1 / numero2;
+	console.log(dividir(20,4);
+
+	let tengoQueTrabajar = dia => {
+		if (dia == "sabado" || dia "domingo") {
+			return "no tenes que trabajar"}
+		else {
+			return "tenes que trabajar"}
+		}
+
+	console.log(tengoQueTrabajar("sabado"); //no trabaja
+	console.log(tengoQueTrabajar("Lunes"); //si trabaja
+
+---------- IF TERNARIO
+
+No lleva llaves que encierra bloque a ejecutar
+Se escribe horizontal
+
+condicion ? expresion para el true : expresion para el false
+
+ej 
+let fruta = "manzana";
+let resultado = fruta == "manzana" ? "Buenisimo, me gustan las manzanas" : "ufa queria manzana";
+
+console.log(resultado);
+
+---------- SWITCH
+
+ Pregunta por algo, si ese algo es verdadero ejecuta un bloque de codigo
+
+let semaforo = "verde";
+
+switch (semaforo) {
+	case "vede":
+	  console.log("cruce");
+	  break;
+	case "amarillo":
+	  console.log("alerta");
+	  break;
+	case "rojo":
+	  console.log("no cruce");
+	  break;
+	default:
+	  console.log("no funciona el semaforo");  
+}
+}
+
+otro ejmplo
+	let bikeA = {
+   	 rodado: 18,
+   	 marca: "Mountain Bike"
+	}
+	let bikeB = {
+   	 rodado: 24,
+	 marca: "Aurora"
+	}
+let bikeGrande = bikeA > bikeB ? bikeA  : bikeB;
+console.log("La bike con  mayor rodado es la "+ bikeGrande.marca );
+
+---------- FOR
+
+este ciclo sirve para repetir un codigo mientras la condicion se cumple
+esta formado por la inicializadora, condicion a evaluar, y el modificador de la variable inicializadora.
+En algún momento debe dar una respuesta negativa para cerrar el ciclo.
+
+for ( let i = 1; i <10; i++ ) { 
+	console.log( i*7 );}
+}
+
+clase 6
+
+---------- CALLBACKS
+
+Es una función que se pasa como parámetro de otra función por ejmplo
+
+// definición
+function vaComoParametro () {
+    return "Soy un callback";}
+// ejecucion
+funcionPadre (vaComoParametro); nos devuelve "soy un call back"
+
+otro ejemplo
+//Creamos las funciones simples
+let sumar = (num1,num2) => num1 + num2
+let restar = (num1,num2) => num1 - num2
+let dividir = (num1,num2) => num1 / num2
+let multiplicar = (num1,num2) => num1 * num2
+//creamos la funcion calculadora
+let calculadora = (num1,num2, operacion) => operacion(num1, num2);
+console.log(1,2,sumar); nos devuelve 3
+console.log(1,2,multiplicar); nos devuelve 2
+
+---------- METODOS DE ARRAYS 2
+
+.map() // recibe una funcion como parametro (callback). recorre el array y devuelve un array nuevo modificado. las modificaciones dependen de lo que programemos en la funcion callback.
+
+.filter() // recorre el array dado, toma cada uno y te devuelve un array nuevo  solamente con los que cumplen con la condicion definida
+Se ejecuta sobre un array y recibe como parametro un callback
+
+.reduce() // se ejecuta sobre un array dado, toma como parametro un callback con 2 parametros (acumulador y elemento actual) y retorna el array a la más minima expresion
+
+.forEach() // iterar sobre un array dado. recibe como parametro un callback, no retorna nada
+
+
+let notas = [10,5,6,7,8]
+let notasHastaEl100= notas.map(function(numero) {
+	return numero * 10; 
+})
+console.log(notasHastaEl100); //nos devuelve un array [100,50,60,70,80]
+
+
+let notasAprobadas = notas.filter(function(numero){
+	return numero >= 7;
+})
+console.log(notasAprobadas); //nos devuelve [10,7,8]
+
+
+let sumaNotas = notas.reduce(function(acumulador,numero){
+	return acumulador + numero;
+})
+console.log(sumaNotas); // nos devuelve un number de 36
+
+notas.forEach(function(valor, indice){
+	console.log( "en la posicion " + indice + "tengo el valor " + valor)
+}) // nos devuelve "en la posicion 0 tengo el valor 10, en la positicion 1, tengo el valor 5, etc etc"
+
+---------- OBJETO DATE
+
+let fechaActual = new Date(); //retorna la fecha dia hora actual.
+//let fechaActual = new Date(2021,8,29) //29 de septiembre de 1989
+let dia = fechaActual.getDay(); //retorna 0 si es domingo 1 si es lunes etc etc
+let fecha = fechaActual.getDate(); //retorna el día del mes en curso
+let mes = fechaActual.getMonth(); //retorna 0 si el mes es enero 1 si es febrero etc etc
+//una forma de corregir lo del mes sería (mes+1)
+let anio = fechaActual.getFullYear(); //retorna el año
+
+let meses = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"]
+
+console.log("hoy es el " + dia + " de " + meses[mes] + " de " + anio)
+
+ejemplo
+let fecha = new Date()
+let dia = fecha.getDate()
+let mes = fecha.getMonth()
+let anio = fecha.getFullYear()
+console.log('Hoy es el día '+dia+' del mes '+(mes+1) +' del año '+anio)
+
+---------- DESTRUCTURING
+
+Destructuración de datos 
+Permite la extracción de datos de arrays u objetos literales
+Este no modifica ni altera el array original, su objetivo es copiar.
+Si queremos nombrar el solamente el objeto que este en segunda posicion se coloca una coma y recien se escribe el nombre de la varible.
+
+ejemplo para arrays
+let colores = ["blanco","celeste","amarillo"];
+let [colorBlanco,colorCeleste,colorAmarillo] = colores;
+console.log (colorBlanco) // nos retorna blanco
+
+ejemplo para objetos literales
+let persona = { nombre:"juan", edad:23,profesion:"programador"}
+let {nombre, profesion} = persona
+console.log(nombre); nos retorna "juan"
+console.log(profesion); nos retorna "programador"
+
+---------- SPREAD OPERATOR
+
+Operador de propagación, permite expandir cada uno de los datos de un elemento iterable dentro de otro elemento. ...variable
+
+En el caso de Arrays
+let peliculasAccion = ["End game", "iron man3", "capitan america"];
+let peliculasComedia = [ "mi pobre angelito", "que paso ayer" ]
+let peliculas = [...peliculasAccion, ...peliculasComedia];
+console.log(peliculas) // nos devuelve todas las peliculas en un solo array
+
+En el caso de Objetos Literales
+let generoComedias = {nombreGenero : "comedia",
+			popularidad : 3,}
+let miPobreAngelito = {nombre : "Mi pobre angelito",
+			duracion : 1
+			...generoComedias}
+let pokemon = {nombre : "Pokemon",
+		duracion : 1.20
+		...generoComedias}
+
+si quisieramos agregar los valores de comedias a los demas objetos colocamos ...generoComedias dentro del objeto literal.
+
+En el caso de las funciones
+function peliculasVistas(...nombresDePeliculas){
+	console.log(nombresDePeliculas); 
+}
+peliculasVistas("End Game","Iron Man 3");  //Nos devuelve un array con 2 elementos
+
+function peliculasVistas(...nombresDePeliculas){
+	for(let i= 0; i < nombresDePeliculas.length; i++) {
+	console.log("Ya vió " + nombresDePeliculas[i]); 
+	}
+}
+peliculasVistas("End Game","Iron Man 3"); 
+//Nos devuelve  "ya vio Endgame"
+		"ya vio Iron Man 3"
+
+
+MODULO 3
+
+Clase 7
+ 
+---------- GIT
+
+Crear un repositorio Local
+git init
+git config user.name "Josemiranda989"
+git config user.email "josemiranda989@gmail.com"
+//Si quisiera hacerlo de manera global para todos los proyectos de mi computadora
+git config user.name "Josemiranda989"
+git config --global user.email "josemiranda989@gmail.com"
+
+Conectar a un repositorio en Github
+git remote add origin https://github.com/Josemiranda989/RepoRemoto.git
+para comprobar que todo esta ok escribir : git remote -v
+
+Ver estado de mi repositorio
+git status
+
+Como agregar archivos al repositorio
+git add app.js (o como se llame el archivo)
+git add . (agrega todos los archivo)
+
+Agregar un commit al archivo agregado (Confirmar el cambio)
+git add .
+git commit -m "primer commit del proyecto"
+
+git log muestra los cambios del repositorio
+
+Subir archivos a Github
+git push origin master
+
+Bajar archivos 
+git clone "url del repo"
+luego entrar en la carpeta cd (nueva carpeta)
+la misma queda sincronizada
+
+Actualizar archivos (descargar los cambios que existen en el repo)
+git pull origin master
+
+Clase 9
+
+---------- Wireframes
+
+Es un boceto donde se representa visualmente, de una forma muy sencilla y esquemática la estructura de una página web
+
+Clase 10
+
+---------- Arquitectura Cliente - Servidor
+
+Cliente al dispositivo que hace peticiones de servicios y recursos a un servidor, puede ser una pc, tablet, consola que pueda conectarse a una red.
+
+Servidor es el equipo que brinda servicios y recursos a dispositivos que esten conectados a la red. Es quien responde los pedidos del cliente.
+
+Los pedidos (request) son solicitudes que hacemos a traves del navegador (el cliente) a un servidor. Ej la pagina de facebook qué está almacenada en sus servidores.
+
+Las respuestas (responses) el servidor recibe nuestra solicitud, la procesa y envia como resultado una respuesta al cliente (navegador). En este ejemplo, devolverá la página principal del sitio.
+
+Es importante conocer este flujo request-response porque la mayoria de las aplicaciones tiene dos claros frentes, front-end y back-end.
+
+front-end es todo lo que pasa del lado del cliente (en el navegador). Incluyen los elementos graficos de la interfaz del sitio y también parte de su funcionalidad. Los lenguajes que maneja son HTML para la estructura, CSS para los estilos visuales y JS para la interaccion dentro del sitio
+
+back-end es todo lo que pasa del lado del servidor. Incluye el funcionamiento interno y lógica del sitio. Es lo que permite que se carguen todas las peticiones solicitadas por el cliente.
+Podemos encontrar: bases de datos como MySQL y MongoDB, lenguajes como PHP y JS para sitios webs dinámicos, framewors(marcos de trabajo) como Express y Laravel
+
+---------- HTTP (HyperTextTransferProtocol)
+
+Protocolo de transferencia de HiperTexto, éste protocolo sirve para gestionar la comunicación entre clientes y servidores. Donde una pide un contenido específico y otra se encarga de responder la solicitud.
+
+URI (identificador de recursos uniformes) --> es un bloque de texto que se escribe en la barra de direcciones de un navegador web y está compuesto por dos partes: URL y URN
+URL (http://) URN(www.digitalhouse.com)
+
+Dentro de ésta estructura de comunicación también hablamos de request cada vez que el cliente solicita un recurso al servidor y de response cada vez que el servidor devuelve una respuesta al cliente.
+
+La información se envia a través de los headers, en porciones de texto conteniendo la información requerida por el cliente o servidor.
+Además tenemos el body donde estará la información en sí del pedido o su respuesta. En el caso de un pedido puede ser el contenido de un formulario, en el caso de una respuesta puede ser el codigo de la pagina que solicitamos.
+
+Metodos más utilizados son 
+GET para pedirle información al servidor de un recurso específico. Cada vez que escribimos una direccion en el navegador o accedemos a un enlace estamos utilizando GET. En éste la informacion viaja a través de la URL
+
+POST para enviar datos al servidor. Es más seguro que GET ya que la información no viaja a traves de la URL.
+
+PUT envia datos, reemplaza toda la informacion de un recurso presente en el servidor.
+
+PATCH envia datos, reemplaza informacion parcial de un recurso presente en el servidor.
+
+DETELE envia una peticion para eliminar un recurso del servidor, por ejemplo eliminar un posteo en facebook.
+
+HTTPS es un protocolo mejorado de HTTP, usando este protocolo, el servidor codifica la sesión con un certificado digital.
+
+---------- Express
+
+Es un framework que facilita el desarrollo de aplicaciones web en Node.js, express es uno de los más populares y estables.
+
+Un framework es un entorno de trabajo que trae resueltas una serie de tareas, automatizando así el desarrollo de cualquier aplicación.
+
+Para utilizar express primero hay que instalar la librería en un proyecto de Node.js ya inicializado
+ejecutar npm init y tener creado el package.json
+luego con npm install express
+en caso de querer clonar el proyecto podra instalar todas las depedencias necesarias con npm install
+Una vez instalado tendremos que requerir el modulo en nuestro entry point que normalmente llamamos app.js
+const express = require ('express')
+Lo que devuelve la libería es una función que encapsula todo lo que puede hacer express. 
+Para ejecutarla debemos crear una variable nueva y almacenar en ella la ejecución
+const app = express();
+
+---------- Servidor Web con Express
+
+Un servidor web es cualquier computadora o sistema que procese solicitudes llamadas request y devuelva respuestas llamadas responses a traves de una conexion de internet.
+
+El cliente solicita un recurso o servicio a un servidor usando HTTP. Luego, el servidor recibe el mensaje, lo decodifica, realiza la petición que se le pidió y devuelve la respuesta a través del mismo formato.
+
+Para levantar un servidor usaremos el metodo Listen que consiste en indicar el numero de puerto donde se va a ejecutar la aplicacion, como segundo parametro ejecutar un callback que retorne un console.log que indique que el servidor se levantó correctamente.
+
+const express = require('express');
+const app = express();
+
+app.listen (3000, () => {
+	console.log('Servidor corriendo')}
+
+correr el comando en la consola con node app.js
+
+para ingresar escribimos en el navegador localhost:3000
+si tira un error cannot get / indica que no establecimos la ruta de destino.
+
+ahora si ingresamos contenido con el codigo
+
+app.get('/', function (req,res) {
+	res.send ('Bienvenidos al sitio');} );
+
+y reiniciamos la consola con ctrl + c y volvemos a correr el comando
+Nos dara como resultado Bienvenidos al sitio en el navegador
+
+---------- Routing y Response
+
+A traves del sistema de ruteo podemos definir como va a responder nuestra aplicacion segun el metodo http y la ruta que llege como pedido al servidor
+
+Metodo GET recibe dos parametros, uno es la url de la ruta, el segundo es un callback con dos parametros req(request) y res(response), donde req contendrá todas alas propiedades y metodos de la peticion que le llegó y res contendrá todas las propiedades y metodos de la respuesta que vamos a enviar. dentro del callback definimos la respuesta que enviaremos con el metodo send. por ejemplo
+
+app.get('/', function(req,res){
+	res.send('hola mundo')})
+
+app.get('/contact', function(req, res){
+	res.send('ingresaste a contactos')})
+
+app.get('/unObjeto', function(req, res){
+	res.send( {name:"dario"} )})
+
+app.get('/unArray', function(req, res){
+	res.send( [1,"casa",2,3 ] )})
+
+let ensalada = "completa"
+app.get('/unaVariable', function(req, res){
+	res.send( ensalada )})
+
+sendFile 
+Nos permite enviar archivos existentes en nuestro servidor como respuesta a los pedidos del cliente 
+
+const express = require('express');
+const app = express();
+const path = require('path')
+
+app.get('/', function(req,res){
+	let htmlPath = path.join(__dirname, '/views/index.html')
+	res.sendFile(htmlPath)})}
+
+otra opción sin variable htmlPath sería
+
+app.get('/', function(req,res){ 
+   res.sendFile( path.join(__dirname, '/views/index.html') )} )
+
+Siendo index.html un archivo creado en la carpeta views
+tambien se debe requerir un modulo nativo path para obtener la ruta absoluta
+
+__dirname es una constante de node.js que hace referencia al directorio del archivo que se esta ejecutando
+
+//Damos enrutamiento para tener acceso a la carpeta public 
+app.use('/static', express.static(__dirname + '/public') ); //opcion 1 con 2 parametros static/images/logo-mercado-liebre.svg 
+/* app.use( express.static(__dirname + '/public') ); //opcion 2 con 1 parametro images/logo-mercado-liebre.svg */ 
+
+Clase 11
+
+
+---------- HTML (Hyper Text markup language)
+
+Es el lenguaje que un navegador interpreta y lo devuelve en un formato entendible.
+
+Etiquetas son porciones de textos que interpretadas por el navegador obtienen un resultado. Estan formadas por etiquetas de aperturas <> y clausura </> el nombre de la etiqueta debe ir adentro.
+
+Atributos (align) son configuraciones adicionales de los elementos que ajustan su comportamiento de diversas formas
+Valores ("center") nos permiten definir las configuraciones del atributo
+Contenido ... Todo aquello que escribamos entre las etiquetas conforman su contenido
+<h1 align="center">...</h1>
+
+---------- La estrutura basica de HTML
+
+<!DOCTYPE html> //version de la pagina
+<html> //inicio de la pagina
+<head>...</head> //configuracion de la pagina
+<body>...</body> //contenido de la pagina
+</html> // fin de la pagina
+
+---------- Elementos de bloque intentan ocupara el 100% del ancho del sitio, visualmente generan un salto de linea. Por ejemplo los <div>
+Elementos de Linea determinan su tamaño en base al contenido que tengan, pueden convivir uno al lado del otro. Ej. <span>
+
+---------- Propiedad display CSS, con ésta podemos cambiar la disposición del elemento que queramos. Los valores que recibe son block, inline, inline-block y none.
+
+-Inline define un elemento con comportamiento en linea.No recibe algunas propiedades del modelo de caja
+-Block define un elemento con comportamiento de bloque. Puede recibir propiedades del modelo de caja.
+-Inline-block define un eleemnto con comportamiento de semi-bloque. Puede recibir propiedades del modelo de caja, y también comparte propiedades de elementos de linea.
+-None oculta un elemento,  no lo elimina de la estructura html, solo desaparece de la vista.
+
+---------- Etiquetas de Texto
+
+<h1> <h2> ... <h6> De mayor a menor en importancia
+<p> parrafo </p>
+<strong> negrita </strong>
+<em> cursiva </em>
+<br> saltos de linea (no llevan cierre)
+
+---------- Listas <li>
+
+Son elementos de bloque, existen ordenadas <ol> y desordenadas <ul>
+
+<ol>
+	<li> primero </li>
+	<li> segundo </li>
+</ol>
+
+También se pueden dar atributos type = "1" num "A" alfabeto "I" romano 
+start = "2" numero donde empieza la lista.
+
+<ul>
+	<li> una cosa </li>
+	<li> otra cosa </li>
+</ul>
+
+También se pueden establecer atributos type="disc" "circle" "square" "none"
+
+---------- Rutas
+
+Una ruta es una direccion, tambien conocido como path, que le permite al navegador encontrar un recurso. En el caso de los enlaces la ruta indica la direccion a la que tiene que llevarnos.
+
+Existen rutas relativas y absolutas.
+https://www.google.com // absoluta
+../imagenes/perfil.jpg // relativa
+
+---------- Hipervinculos
+
+a través de la etiqueta <a> vamos a poder crear nuestros enlaces
+
+<a href="https://www.google.com">vamos a google</a>
+
+href -> atributo, destino donde apunta nuestro enlace
+"https://goo.." -> rutas o un ancla #
+vamos a google -> texto o contenido a visualizar
+ancla # -> hacen referencia a un fragmento o elemento de una pagina con la propiedad id
+
+---------- Correo
+
+<a href ="mailto:josemiranda989@gmail.com"> Enviar email </a>
+
+---------- Telefono
+
+<a href ="tel:3816563940"> LLamar </a>
+
+---------- Imagenes
+
+<img src="img/fotoPerfil.jpg" alt="foto de perfil">
+Cuando la imagen no carga muestra el cartel "foto de perfil"
+
+También puede modificarse ancho y alto como atributo, pueden ser en pixeles(solo con el numero) o porcentajes (con % al final)
+
+<img width="320"src="img/fotoPerfil.jpg"> //ancho
+
+<img height="570"src="img/fotoPerfil.jpg"> //alto
+
+---------- Etiquetas semánticas
+
+nos permite generar un codigo más entendible tanto para humanos como para los buscadores
+
+Etiquetas semanticas de bloque -> header, nav, footer,section,article
+
+Clase 12
+
+---------- CSS Cascading Style Sheet
+
+Sirve para etilizar nuestro contenido HTML, como ser colores, fondos,tipografías, anchos, altos, animaciones y transiciones.
+
+Existen 3 tipos de vinculaciones de nuestro archivo css con el documento html
+
+Vinculación externa (recomendada) podemos escribir todos los estilos en un archivo css y vincularlos usando la etiqueta link dentro del head.
+<link href="css/estilos.css" rel="stylesheet">
+
+Vinculación interna, a través de la etiqueta style dentro del head.
+<head>
+	<style>
+	body {background:blue}
+	</style>
+</head>
+
+Vinculación en línea (no recomendada) utilizando style en cada elemento de nuestro html
+<p style="color:red">...</p>
+
+---------- Reglas de CSS
+
+body { font-family: sans-serif }
+siendo body el selector de elemento
+font-family una propiedad 
+sans-serif el valor que le dimos a la propiedad
+
+Las mismas se escriben entre llaves{}, propiedad : valor y se color ; para separar más reglas.
+body {  color:red;
+	font-family:sans-serif;
+}	
+
+---------- Selectores de ID
+
+Este selector va a atrapar al elemento HTML que tenga asignado el atributo id, se recomienda usar nombres unicos.
+html --> <h3 id="saludo"> hola! </h3>
+css  --> #saludo { color: blue; } //se llama con #
+
+---------- Selectores de Clase
+
+Este selector va a atrapar al elemento HTML que tenga asignado el atributo class
+html--> <h3 class="noticia detacada">Una noticia</h3>
+css --> .noticia { font-size: 22px } //sae llama con .
+
+
+---------- Selectores de Etiqueta
+
+Este va atrapar al elemento HTML con el mismo nombre de etiqueta que llamemos desde nuestro css
+html--> <p>Ad lorem ipsum</p>
+css --> p{color:gray} //se llama con el nombre de la etiqueta
+
+---------- Selectores combinados
+
+son la combinación de todos los anteriores
+html --> <h2 class="subtitulo">Un subtitulo</h2>
+css  --> h2.subtitulo {color:yellow} //
+
+---------- Selectores descendentes
+
+sirven apra agregar especificidad, por ejemplo vamos a atrapar a li que está dentro de ul con el id lista.
+html--> <ul id="lista>
+	 <li>primer item</li>
+	</ul>
+css --> ul#lista li {text-align:center}
+
+---------- Propiedades tipográficas
+
+font-family: define la familia tipográfica, si no se encuentra la primera, se cargara la segunda o tercera.
+p {font-family: arial, sans-serif}
+
+font-size: define el tamaño tipográfico. (px,em,rem)
+p {font-size: 23px}
+
+font-style: define el estilo, italic, normal, oblique
+p {font style: normal}
+
+font-weight: define el peso. Bold, lighter,normal, entre otros. también puede recibir valor numérico que va incrementando de 100 en 100.
+p {font-weight:500}
+
+text-align: permite definir la alineación del texto. Los valores que recibe son left(Stock), right,inherit, justify
+p {text-align:justify}
+
+text-decoration: permite elegir tipo de decoración, line-through, underline, overline y none.
+En los enlaces undeline es el valor por defecto.
+p {text-decoration:underline}
+
+line-height: (interlineado) define el alto de cada linea de textos.
+p { line-height: 20px} 
+
+
+---------- Colores
+
+Los mismos se pueden asignar por
+Nombre: p {color:red}
+Hexadecimal: p { color: #f05331 }
+rgb: p {color: rgb(255, 100, 50)
+rgba : p {color: rgb(255, 100, 50, 0.5) //el ultimo indica la opacidad del 0 al 1.
+
+---------- Fondos
+
+background-color: nos permite asignar un color de fondo
+p {background-color: red}
+p {background-color: #3459ff}
+p {background-color: rgb(12,34,32}
+
+background-image: nos permite asignarle una imagen de fondo
+p { background-image: url('../img/bici.jpg') }
+
+background-repeat: nos permite controlar si se va a repetir y de que manera la imagen. puede ser repeat, no repeat, repeat-x, repeat-y, round y space.
+p { background-repeat: repeat }
+
+background-position: permite mover la imagen dentro del elemento. Recibe como valores tamaños y porcentajes, también right, bottom, left, etc.
+podemos asignarle uno o dos valores, el primero para la posicion en el eje x y el segundo para la posicion en el eje y.
+p { background-position: right top }
+
+background-attachment: nos permite establecer si la imagen se va a mover al hacer scroll o queda fija. recibe como valor fixed, scroll, inherit e initial.
+p { background-attachment : fixed } 
+
+background-size: permite establecer el tamaño de la imagen de fondo, recibe como valor contain, cover, inherit; así también tamaños en pixeles y porcentajes, indicando primer valor ancho y segundo alto
+p { background-size: 130px }
+
